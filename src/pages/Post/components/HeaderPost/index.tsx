@@ -2,36 +2,49 @@ import { FaGithub, FaRegCalendarAlt } from "react-icons/fa";
 import { PerfilContainer, PerfilContent, PerfilHeader, PerfilIcons, PerfilInfo, PerfilLink } from "./styles";
 import { HiChatBubbleLeftRight } from "react-icons/hi2";
 
-export function HeaderPost() {
+type HeaderPostProps = {
+    issue: {
+      title: string
+      user: {
+        login: string
+      }
+      created_at: string
+      comments: number
+      html_url: string
+    }
+  }
+
+  export function HeaderPost({ issue }: HeaderPostProps) {
+    if (!issue || !issue.user) return <p>Carregando...</p>
+
     return (
         <PerfilContainer>
             <PerfilHeader>
                 <PerfilLink href="/">← VOLTAR</PerfilLink>
-                <PerfilLink href="https://github.com" target="_blank">
+                <PerfilLink href={issue.html_url} target="_blank">
                     VER NO GITHUB <span>↗</span>
                 </PerfilLink>
             </PerfilHeader>
 
             <PerfilContent>
                 <PerfilInfo>
-                    <h1>JavaScript data types and data structures</h1>
+                    <h1>{issue.title}</h1>
                     <PerfilIcons>
                         <span>
                             <FaGithub />
-                            cameronwll
+                            {issue.user.login}
                         </span>
                         <span>
                             <FaRegCalendarAlt />
-                            Há 1 dia
+                            {new Date(issue.created_at).toDateString()}
                         </span>
                         <span>
                             <HiChatBubbleLeftRight />
-                            5 comentários
+                            {issue.comments} comentários
                         </span>
                     </PerfilIcons>
                 </PerfilInfo>
             </PerfilContent>
-
         </PerfilContainer>
     )
 }

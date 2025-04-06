@@ -1,22 +1,26 @@
 import { NavLink } from "react-router-dom";
 import { IssuesContainer, TitleContent } from "./styles";
 
-export function Issues() {
+type IssuesProps = {
+    id: number;
+    title: string;
+    body: string;
+    created_at: string;
+}
+
+export function Issues({ id, title, body, created_at }: IssuesProps) {
     return (
-       <NavLink to="post">
+        <NavLink to={`/post/${id}`}>
             <IssuesContainer>
                 <TitleContent>
                     <h1>
-                        JavaScript data types and data structures
+                        {title}
                     </h1>
-                    <span>Há 1 dia</span>
+                    <span>{new Date(created_at).toLocaleDateString()}</span>
                 </TitleContent>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Assumenda, voluptates. Unde soluta labore harum. 
-                    Maiores exercitationem in nihil accusantium eveniet corporis veritatis provident debitis aliquid, 
-                    architecto odit! Cum, doloremque eos.
+                    {body}
                 </p>
         </IssuesContainer>
        </NavLink>

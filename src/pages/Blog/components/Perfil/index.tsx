@@ -1,36 +1,43 @@
 import { PerfilContainer, PerfilContent, PerfilInfo, PerfilIcons, PerfilLink } from './styles'
-import avatar from '../../../../assets/avatar.svg'
 import { FaGithub, FaBuilding, FaUserFriends } from 'react-icons/fa'
 
-export function Perfil() {
+
+type PerfilProps = {
+    avatar_url: string
+    name: string
+    bio: string
+    login: string
+    company: string
+    followers: number
+}
+
+export function Perfil({ avatar_url, bio, company, followers, login, name }: PerfilProps) {
     return (
         <PerfilContainer>
             <PerfilContent>
-                <img src={avatar} alt="Avatar" />
+                <img src={avatar_url} alt="Avatar" />
                 <PerfilInfo>
-                    <h1>Cameron Williamson</h1>
+                    <h1>{name}</h1>
                     <p>
-                        Tristique volutpat pulvinar vel massa, pellentesque egestas. 
-                        Eu viverra massa quam dignissim aenean malesuada suscipit. 
-                        Nunc, volutpat pulvinar vel mass.
+                        {bio}
                     </p>
                     <PerfilIcons>
                         <span>
                             <FaGithub />
-                            cameronwll
+                            {login}
                         </span>
                         <span>
                             <FaBuilding />
-                            Rocketseat
+                            {company}
                         </span>
                         <span>
                             <FaUserFriends />
-                            32 seguidores
+                            {followers} seguidores
                         </span>
                     </PerfilIcons>
                 </PerfilInfo>
             </PerfilContent>
-            <PerfilLink href="https://github.com" target="_blank">
+            <PerfilLink href={`https://github.com/${login}`} target="_blank">
                 GITHUB
                 <span>↗</span>
             </PerfilLink>

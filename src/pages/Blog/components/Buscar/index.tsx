@@ -1,14 +1,25 @@
 import { BuscarContainer, Title } from "./styles";
 
-export function Buscar() {
+type BuscarProps = {
+    total: number;
+    search: string
+    onSearchChange: (value: string) => void
+}
+
+export function Buscar({ total, search, onSearchChange }: BuscarProps) {
     return (
         <BuscarContainer>
             <Title>
                 <strong>Publicações</strong>
-                <span>6 publicações</span>
+                <span>{total} publicações</span>
             </Title>
 
-            <input type="text" placeholder="Texto da busca"/>
+            <input 
+                type="text" 
+                placeholder="Texto da busca"
+                value={search}
+                onChange={(e) => onSearchChange(e.target.value)}
+            />
         </BuscarContainer>
     )
 }

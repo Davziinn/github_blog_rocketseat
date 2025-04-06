@@ -1,17 +1,14 @@
 import { DescricaoTexto, Topico } from "./style";
 
-export function Descricao() {
+type DescricaoProps = {
+    body: string
+  }
+
+export function Descricao({ body }: DescricaoProps) {
     return (
         <>
             <DescricaoTexto>
-                <strong>
-                    Programming languages all have built-in data structures,
-                    but these often differ from one language to another.
-                </strong>
-                This article attempts to list the built-in data structures
-                available in JavaScript and what properties they have.
-                These can be used to build other data structures.
-                Wherever possible, comparisons with other languages are drawn.
+               {body}
             </DescricaoTexto>
 
 
